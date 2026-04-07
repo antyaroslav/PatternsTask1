@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
-import ru.netology.data.RegistrationInfo;
 
 import java.time.Duration;
 
@@ -28,7 +27,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldReplanMeetingDate() {
-        RegistrationInfo user = DataGenerator.generateRegistrationInfo();
+        DataGenerator.UserInfo user = DataGenerator.Registration.generateUser("ru");
         String firstDate = DataGenerator.generateDate(4);
         String secondDate = DataGenerator.generateDate(7);
 

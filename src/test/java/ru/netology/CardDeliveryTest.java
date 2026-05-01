@@ -2,6 +2,9 @@ package ru.netology;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,12 +21,19 @@ public class CardDeliveryTest {
     @BeforeAll
     static void setUpAll() {
         Configuration.baseUrl = "http://localhost:9999";
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @BeforeEach
     void setUp() {
         open("/");
     }
+
+    @AfterAll
+    static void tearDown() {
+        SelenideLogger.removeListener("allure");
+    }
+
 
     @Test
     void shouldReplanMeetingDate() {
